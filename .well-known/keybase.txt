@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/joshtf
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://josh.tf
+  * I am joshtf (https://keybase.io/joshtf) on keybase.
+  * I have a public key with fingerprint FF11 416B 8853 CADC 7A20  7B85 07B8 CEC9 1E4A B5ED
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "01168b83b8c992f60a87c28b323ac5506f579abbaf3ae61c38eb991ad2a59fb7e0b20a",
+      "fingerprint": "ff11416b8853cadc7a207b8507b8cec91e4ab5ed",
+      "host": "keybase.io",
+      "key_id": "07b8cec91e4ab5ed",
+      "kid": "01168b83b8c992f60a87c28b323ac5506f579abbaf3ae61c38eb991ad2a59fb7e0b20a",
+      "uid": "b2339f508737f0de53d4afe26170db19",
+      "username": "joshtf"
+    },
+    "merkle_root": {
+      "ctime": 1734215410,
+      "hash_meta": "b7fdcfbf863921eb342adf0758706c724554d6875f0556e6d21186920d42db78",
+      "seqno": 26378672
+    },
+    "revoke": {
+      "sig_ids": [
+        "3a0ff465cafc5bc0cc45a549cfcd8d19e7270152ada88cddf33bed8d732263b10f"
+      ]
+    },
+    "service": {
+      "hostname": "josh.tf",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1734215452,
+  "expire_in": 157680000,
+  "prev": "8326f4a876bd306da0d244ec90bc6efdcf221fa44c0ccf15d5de5ecac809363f",
+  "seqno": 8,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMHIAnicrVM9axRBGL6LHyEBwSogisUgInKE+Z7ZQwULEU3hB1iJOefjnbv1creX
+3c1pCIeVaKlgYyXYi4WIVhYhjQo2NmnEH6A2ooWVzkRF0dYtdpnZ532e533emY1d
+2xqzc9PPXr/Yf/rJx+ar9WKl0V2c3reGbOFXUXsN9WHrA0seqrrTzz1qI0yI1FYz
+q12W0SCx0cpRbRllxgmBZRAqM9aawAxI4pgGm2XEeGpEFqwCbCk2qIVCPuxCOSrz
+YR1pQyCEE2m1FswZ75ShWFkt0suBywhwYwX4WNgrqlQRzVlTwXxexL246Pyw9y/+
+P/te2aKzlLEsCKwVUwF7EMxzE4BKorC3JEvACsqhGUBEXymqXh3QpIUGUPaXoFMW
+RZ2idXWeAEQxTongBMf2TNXrDKA2SUUF74INWrKMErARZXzASmiFpVOUC8G91EoE
+LIQE6SkhWmYUe069VTq6qGB5WKA2lUxpqWi0UMK46ENSr/JuTK1C7YuIGRwCl8KZ
+4IR12DkujOCZC85rTzJQVGEiorzR2nkfGLMQ/yhGI7UlOKBLk6RWjnO3RZ7G9Ef7
+87H/FhqVRV24Yilu9up6VLVTJvXqKKGugu38rO/YfOjj+YgVYyirvBjGjCLyr7gE
+bSG4NspL6OQJIZTUOD5JB8aRUjMqA4+TltYzLL3BnnIejwe2TkLKllISDOep4UCE
+F3GS4IzTOGOShd/56WjTdCNlzGxo6pUS0GR9cXtjbraxc8dUujaN2Zndvy7To36z
+MdO+df/c19tvxd4zN24eWHxw6pM7fOH6m3eXT0w+DI4cfd5sbDxeJ3sWsntnH578
+fOflwubdL+/Pbx6fOvT0mFs++K1ufgfoCx/s
+=iis7
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/joshtf
+
+==================================================================
