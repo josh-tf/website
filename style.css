@@ -1,0 +1,441 @@
+:root {
+  --bg: #0a0a0a;
+  --text: #888;
+  --text-dim: #4a4a4a;
+  --accent: #52ff9e;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 300;
+  font-size: 0.85rem;
+  overflow: hidden;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Background grid */
+.grid {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.grid::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: -50%;
+  width: 200%;
+  height: 70%;
+  background-image:
+    linear-gradient(rgba(82, 255, 158, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(82, 255, 158, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(400px) rotateX(55deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 70%);
+}
+
+.grid::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 2px;
+  background: radial-gradient(ellipse, rgba(82, 255, 158, 0.1) 0%, transparent 70%);
+  filter: blur(8px);
+}
+
+/* Container */
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  animation: fade 1s ease;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Title */
+h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ccc;
+  margin-bottom: 0.8rem;
+}
+
+.dot {
+  color: var(--accent);
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+}
+
+/* Email */
+.contact {
+  color: var(--text-dim);
+  font-size: 0.75rem;
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.02em;
+}
+
+.contact a {
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact a:hover {
+  color: var(--accent);
+}
+
+/* Icon tray */
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.45rem 1rem;
+  border: 1px solid #161616;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.icon-link {
+  position: relative;
+  color: var(--text-dim);
+  transition: color 0.3s;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.3rem;
+}
+
+.icon-link:hover {
+  color: var(--accent);
+}
+
+/* Tooltips */
+.icon-link::before {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.6rem;
+  color: #aaa;
+  background: #161616;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid #1e1e1e;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  letter-spacing: 0.03em;
+}
+
+.icon-link:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.icon-link svg {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Lambda / mesh hold button */
+.lambda-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lambda-wrap::before {
+  content: 'mesh';
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 0.6rem;
+  color: #aaa;
+  background: #161616;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid #1e1e1e;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  letter-spacing: 0.03em;
+}
+
+.lambda-wrap:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.lambda-btn {
+  position: relative;
+  z-index: 2;
+  color: var(--text-dim);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: color 0.3s;
+  line-height: 1;
+  padding: 4px 2px;
+}
+
+.lambda-btn:hover {
+  color: var(--text);
+}
+
+.lambda-btn.active {
+  color: var(--accent);
+}
+
+/* Glow ring */
+.lambda-glow {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1.5px solid transparent;
+  pointer-events: none;
+  z-index: 1;
+  transition: box-shadow 0.15s ease;
+}
+
+.lambda-glow.charging {
+  border-color: var(--accent);
+  animation: chargeRing 1.5s linear forwards;
+}
+
+@keyframes chargeRing {
+  0% {
+    box-shadow:
+      0 0 0px rgba(82, 255, 158, 0),
+      0 0 0px rgba(82, 255, 158, 0);
+    opacity: 0.4;
+  }
+  80% {
+    box-shadow:
+      0 0 8px rgba(82, 255, 158, 0.3),
+      0 0 20px rgba(82, 255, 158, 0.1);
+    opacity: 0.9;
+  }
+  100% {
+    box-shadow:
+      0 0 14px rgba(82, 255, 158, 0.6),
+      0 0 35px rgba(82, 255, 158, 0.2);
+    opacity: 1;
+  }
+}
+
+/* SVG ring progress */
+.lambda-ring {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  pointer-events: none;
+  z-index: 1;
+  transform: rotate(-90deg);
+}
+
+.lambda-ring circle {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.5;
+  stroke-dasharray: 94;
+  stroke-dashoffset: 94;
+  stroke-linecap: round;
+  opacity: 0;
+}
+
+.lambda-ring circle.charging {
+  opacity: 1;
+  animation: drawRing 1.5s linear forwards;
+}
+
+@keyframes drawRing {
+  0% {
+    stroke-dashoffset: 94;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* Labs overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(5, 5, 5, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.overlay-content {
+  text-align: center;
+  max-width: 420px;
+  padding: 2rem;
+  transform: translateY(10px);
+  transition: transform 0.35s ease;
+}
+
+.overlay.active .overlay-content {
+  transform: translateY(0);
+}
+
+.overlay-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 0.3s;
+  background: none;
+  border: none;
+  display: flex;
+}
+
+.overlay-close:hover {
+  color: var(--accent);
+}
+
+.overlay-close svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.labs-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: #ccc;
+  margin-bottom: 0.3rem;
+}
+
+.labs-title span {
+  color: var(--accent);
+}
+
+.labs-sub {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+}
+
+.labs-desc {
+  color: var(--text);
+  font-size: 0.85rem;
+  line-height: 1.7;
+  margin-bottom: 1.8rem;
+}
+
+.labs-services {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.labs-service {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.05em;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid #1a1a1a;
+  border-radius: 3px;
+}
+
+.labs-contact {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.labs-contact a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.labs-contact a:hover {
+  color: var(--accent);
+}
+
+/* Noscript fallback */
+.noscript-email {
+  display: none;
+}
