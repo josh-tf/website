@@ -24,23 +24,29 @@
   labsLink.textContent = u2 + '@' + d;
   labsEl.appendChild(labsLink);
 
-  // Labs overlay
-  var overlay = document.getElementById('labs-overlay');
+  // Overlay helper
+  function setupOverlay(openId, closeId, overlayId) {
+    var ol = document.getElementById(overlayId);
+    document.getElementById(openId).addEventListener('click', function () {
+      ol.classList.add('active');
+    });
+    document.getElementById(closeId).addEventListener('click', function () {
+      ol.classList.remove('active');
+    });
+    ol.addEventListener('click', function (e) {
+      if (e.target === ol) ol.classList.remove('active');
+    });
+  }
 
-  document.getElementById('labs-open').addEventListener('click', function () {
-    overlay.classList.add('active');
-  });
-
-  document.getElementById('labs-close').addEventListener('click', function () {
-    overlay.classList.remove('active');
-  });
-
-  overlay.addEventListener('click', function (e) {
-    if (e.target === overlay) overlay.classList.remove('active');
-  });
+  setupOverlay('labs-open', 'labs-close', 'labs-overlay');
+  setupOverlay('projects-open', 'projects-close', 'projects-overlay');
 
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') overlay.classList.remove('active');
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.overlay.active').forEach(function (ol) {
+        ol.classList.remove('active');
+      });
+    }
   });
 
   // Lambda hold-to-activate (1.5s)

@@ -27,16 +27,6 @@
 
       <div class="contact" id="email"></div>
 
-      <div class="projects">
-        <a href="/fxcommands/" class="project-card">
-          <img src="fxcommands/icon.png" alt="" class="project-icon" />
-          <div>
-            <div class="project-name">FXCommands</div>
-            <div class="project-desc">Stream Deck plugin for FiveM &amp; RedM</div>
-          </div>
-        </a>
-      </div>
-
       <nav class="icons" aria-label="Links">
         <a
           href="https://github.com/josh-tf"
@@ -75,6 +65,19 @@
           <div class="lambda-glow" id="lambda-glow"></div>
           <div class="lambda-btn" id="mesh-btn">&#955;</div>
         </div>
+
+        <a
+          class="icon-link"
+          id="projects-open"
+          data-tip="projects"
+          role="button"
+          tabindex="0"
+          aria-label="Projects"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+          </svg>
+        </a>
 
         <a
           class="icon-link"
@@ -117,6 +120,32 @@
           <span class="labs-service">integrations</span>
         </div>
         <div class="labs-contact">enquiries: <span id="labs-email"></span></div>
+      </div>
+    </div>
+
+    <!-- Projects overlay -->
+    <div class="overlay" id="projects-overlay" role="dialog" aria-label="Projects" aria-hidden="true">
+      <button class="overlay-close" id="projects-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M18 6 6 18" />
+          <path d="m6 6 12 12" />
+        </svg>
+      </button>
+      <div class="overlay-content">
+        <div class="labs-title">Pro<span>jects</span></div>
+        <div class="labs-sub">Open Source &amp; Side Projects</div>
+        <div class="projects-grid">
+          <a href="/fxcommands/" class="project-card">
+            <img src="fxcommands/icon.png" alt="" class="project-icon" />
+            <div class="project-info">
+              <div class="project-name">FXCommands</div>
+              <div class="project-desc">Stream Deck plugin for sending commands to FiveM &amp; RedM</div>
+            </div>
+            <svg class="project-arrow" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 12h14" /><path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
 
