@@ -1,7 +1,7 @@
 :root {
   --bg: #0a0a0a;
-  --text: #a0a0a0;
-  --text-dim: #606060;
+  --text: #b0b0b0;
+  --text-dim: #707070;
   --accent: #52ff9e;
 }
 
@@ -20,7 +20,7 @@ body {
   color: var(--text);
   font-family: 'IBM Plex Sans', sans-serif;
   font-weight: 300;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
