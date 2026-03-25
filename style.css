@@ -122,6 +122,57 @@ h1 {
   color: var(--accent);
 }
 
+/* Projects */
+.projects {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.project-card {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid #161616;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.015);
+  color: var(--text-dim);
+  text-decoration: none;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.project-card:hover {
+  border-color: #2a2a2a;
+  color: var(--text);
+}
+
+.project-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.project-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #aaa;
+  transition: color 0.3s;
+}
+
+.project-card:hover .project-name {
+  color: var(--accent);
+}
+
+.project-desc {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+
 /* Icon tray */
 .icons {
   display: flex;
