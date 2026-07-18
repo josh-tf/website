@@ -216,8 +216,9 @@ h1 {
   color: var(--accent);
 }
 
-/* Tooltips */
-.icon-link::before {
+/* Tooltips (icon tray + lambda) */
+.icon-link::before,
+.lambda-wrap::before {
   content: attr(data-tip);
   position: absolute;
   bottom: calc(100% + 10px);
@@ -239,7 +240,8 @@ h1 {
   letter-spacing: 0.03em;
 }
 
-.icon-link:hover::before {
+.icon-link:hover::before,
+.lambda-wrap:hover::before {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
 }
@@ -260,33 +262,6 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.lambda-wrap::before {
-  content: 'mesh';
-  position: absolute;
-  bottom: calc(100% + 10px);
-  left: 50%;
-  transform: translateX(-50%) translateY(4px);
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-size: 0.6rem;
-  color: #aaa;
-  background: #161616;
-  padding: 3px 8px;
-  border-radius: 4px;
-  border: 1px solid #1e1e1e;
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease;
-  letter-spacing: 0.03em;
-}
-
-.lambda-wrap:hover::before {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
 }
 
 .lambda-btn {
@@ -500,6 +475,14 @@ h1 {
 
 .labs-contact a:hover {
   color: var(--accent);
+}
+
+.labs-legal {
+  margin-top: 1.4rem;
+  font-size: 0.62rem;
+  color: #555;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 /* Noscript fallback */
