@@ -20,6 +20,22 @@
 # script-src 'self' exists for one file: the hashed /_astro bundle that decodes
 # the obfuscated mailto. Keeping it out of an inline block is the whole reason
 # that script lives in a module rather than in the markup.
+#
+# `script-src 'self'` with no 'unsafe-inline' is only tenable while two
+# zone-level features on josh.tf stay OFF. Both inject script into the response
+# and both are blocked by this policy:
+#
+#   - Web Analytics / Browser Insights loads beacon.min.js from
+#     static.cloudflareinsights.com. Allowing it needs that host in script-src
+#     and cloudflareinsights.com in connect-src.
+#   - Bot Fight Mode's JS Detections injects a bare inline <script> carrying a
+#     per-request token (window.__CF$cv$params). The token changes every
+#     response, so a CSP hash is impossible — only 'unsafe-inline' would admit
+#     it, which is most of what this policy exists to prevent.
+#
+# Turning either back on means visitors get console errors and the feature
+# silently collects nothing. Decide the policy here first, then the toggle.
+# jtf-labs.com runs the same CSP with both features off and a clean console.
 /*
   Content-Security-Policy: default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'
   Strict-Transport-Security: max-age=31536000; includeSubDomains
