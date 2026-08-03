@@ -1,1 +1,3 @@
 .serena/
+.wrangler/
+node_modules/

@@ -4,14 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>josh.tf - josh-tf</title>
-    <meta name="description" content="josh-tf - Software developer based in Melbourne. Open source projects, consulting, and systems integration." />
+    <meta name="description" content="josh-tf - Software developer based in Melbourne." />
     <meta name="author" content="josh-tf" />
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="canonical" href="https://josh.tf" />
 
     <!-- Open Graph -->
     <meta property="og:title" content="josh.tf - josh-tf" />
-    <meta property="og:description" content="Software developer based in Melbourne. Open source projects, consulting, and systems integration." />
+    <meta property="og:description" content="Software developer based in Melbourne." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://josh.tf" />
     <meta property="og:site_name" content="josh.tf" />
@@ -19,7 +19,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="josh.tf - josh-tf" />
-    <meta name="twitter:description" content="Software developer based in Melbourne. Open source projects, consulting, and systems integration." />
+    <meta name="twitter:description" content="Software developer based in Melbourne." />
     <link rel="icon" href="assets/images/favicon-light.svg" type="image/svg+xml" media="(prefers-color-scheme: light)" />
     <link rel="icon" href="assets/images/favicon-dark.svg" type="image/svg+xml" media="(prefers-color-scheme: dark)" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -39,36 +39,6 @@
       <div class="contact" id="email"></div>
 
       <nav class="icons" aria-label="Links">
-        <a
-          class="icon-link"
-          id="projects-open"
-          data-tip="projects"
-          role="button"
-          tabindex="0"
-          aria-label="Projects"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
-          </svg>
-        </a>
-
-        <a
-          class="icon-link"
-          id="labs-open"
-          data-tip="jtf labs"
-          role="button"
-          tabindex="0"
-          aria-label="JTF Labs"
-        >
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path
-              d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"
-            />
-            <path d="M8.5 2h7" />
-            <path d="M7 16.5h10" />
-          </svg>
-        </a>
-
         <a
           href="https://github.com/josh-tf"
           target="_blank"
@@ -98,80 +68,7 @@
             <circle cx="16.5" cy="7.5" r=".5" fill="currentColor" />
           </svg>
         </a>
-
-        <div class="lambda-wrap" data-tip="mesh" role="button" tabindex="0" aria-label="Mesh">
-          <svg class="lambda-ring" viewBox="0 0 38 38" aria-hidden="true">
-            <circle cx="19" cy="19" r="15" id="ring-circle" />
-          </svg>
-          <div class="lambda-glow" id="lambda-glow"></div>
-          <div class="lambda-btn" id="mesh-btn">&#955;</div>
-        </div>
       </nav>
-    </div>
-
-    <!-- Labs overlay -->
-    <div class="overlay" id="labs-overlay" role="dialog" aria-label="JTF Labs" aria-hidden="true">
-      <button class="overlay-close" id="labs-close" aria-label="Close">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M18 6 6 18" />
-          <path d="m6 6 12 12" />
-        </svg>
-      </button>
-      <div class="overlay-content">
-        <div class="labs-title">JTF <span>Labs</span></div>
-        <div class="labs-sub">Software Development &amp; Consulting</div>
-        <p class="labs-desc">
-          Melbourne-based software consultancy specialising in custom development, automation
-          tooling, and systems integration. From concept through to production.
-        </p>
-        <div class="labs-services">
-          <span class="labs-service">custom software</span>
-          <span class="labs-service">automation</span>
-          <span class="labs-service">consulting</span>
-          <span class="labs-service">integrations</span>
-        </div>
-        <div class="labs-legal">JTF Labs Pty Ltd &middot; ABN 93 693 353 347</div>
-        <div class="labs-contact">enquiries: <span id="labs-email"></span></div>
-      </div>
-    </div>
-
-    <!-- Projects overlay -->
-    <div class="overlay" id="projects-overlay" role="dialog" aria-label="Projects" aria-hidden="true">
-      <button class="overlay-close" id="projects-close" aria-label="Close">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M18 6 6 18" />
-          <path d="m6 6 12 12" />
-        </svg>
-      </button>
-      <div class="overlay-content">
-        <div class="labs-title">Pro<span>jects</span></div>
-        <div class="labs-sub">Open Source &amp; Side Projects</div>
-        <div class="projects-grid">
-          <div class="project-card">
-            <img src="assets/images/tickettool-icon.svg" alt="" class="project-icon" />
-            <div class="project-info">
-              <div class="project-name">Ticket Tool</div>
-              <div class="project-desc">Discord bot for automated support tickets with a visual flow builder, AI replies &amp; analytics</div>
-              <div class="project-links">
-                <a href="https://ticket-tool.app" target="_blank" rel="noopener">Website</a>
-                <a href="https://github.com/Ticket-Tool-App" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </div>
-
-          <div class="project-card">
-            <img src="fxcommands/icon.png" alt="" class="project-icon" />
-            <div class="project-info">
-              <div class="project-name">FXCommands</div>
-              <div class="project-desc">Stream Deck plugin for sending commands to FiveM &amp; RedM</div>
-              <div class="project-links">
-                <a href="/fxcommands/" target="_blank" rel="noopener">Website</a>
-                <a href="https://github.com/josh-tf/fxcommands" target="_blank" rel="noopener">GitHub</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
 
     <noscript>
