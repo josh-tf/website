@@ -1,0 +1,111 @@
+---
+import { Font } from 'astro:assets';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const ogImage = new URL('/og.png', Astro.site);
+
+// Deliberately no `email` property. Scrapers parse JSON-LD first, and it is the
+// one place the obfuscation in src/components/Mail.astro cannot reach — putting
+// the address here would hand over exactly what that component exists to
+// withhold. The profile links are public by design and belong here.
+const person = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Josh',
+  alternateName: 'josh-tf',
+  url: 'https://josh.tf',
+  jobTitle: 'Software developer',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Melbourne',
+    addressCountry: 'AU',
+  },
+  sameAs: ['https://github.com/josh-tf', 'https://keybase.io/joshtf'],
+};
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="color-scheme" content="dark" />
+
+    {
+      /* The SVG pair predates this rewrite and is kept: the mark is drawn in
+        black or white depending on the UA's colour scheme, which a single file
+        cannot do in the browsers that ignore CSS inside a favicon. The .ico is
+        the 32px fallback for clients that still ask for it by name. */
+    }
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link
+      rel="icon"
+      href="/favicon-light.svg"
+      type="image/svg+xml"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      href="/favicon-dark.svg"
+      type="image/svg+xml"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="josh.tf" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <Font cssVariable="--font-mono" preload />
+    <Font cssVariable="--font-sans" />
+
+    {
+      /* `is:inline` is explicit rather than inferred: JSON-LD is data, not code,
+        and must stay in the document for a crawler to find it. Astro would infer
+        it anyway from the `type` attribute — saying so silences the hint that
+        this block will not be bundled, which is the intent. */
+    }
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(person)} />
+  </head>
+  <body>
+    <div class="backdrop" aria-hidden="true"></div>
+    <slot />
+
+    <script>
+      // Turns every <a data-mail> into a working mailto. The payload is the
+      // XOR key in the first byte followed by the hex-encoded address; see
+      // src/components/Mail.astro for why the address is not in the markup.
+      //
+      // Astro bundles this to a hashed file under /_astro, so it is covered by
+      // `script-src 'self'` and the CSP in public/_headers stays free of
+      // 'unsafe-inline'.
+      for (const el of document.querySelectorAll<HTMLAnchorElement>('a[data-mail]')) {
+        const hex = el.dataset.mail!;
+        const key = parseInt(hex.slice(0, 2), 16);
+        let address = '';
+        for (let i = 2; i < hex.length; i += 2) {
+          address += String.fromCharCode(parseInt(hex.slice(i, i + 2), 16) ^ key);
+        }
+        el.href = `mailto:${address}`;
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,75 @@
+# Served by Cloudflare Workers Static Assets. Astro copies this file from
+# public/ into dist/, where the assets runtime picks it up; it is never served
+# as content itself.
+#
+# Each path pattern appears EXACTLY ONCE below. A pattern listed twice does not
+# merge — the later block replaces the earlier one wholesale, which silently
+# drops whatever the first block set. Group every header for a path together.
+
+# Everything, including the 404. `not_found_handling: 404-page` serves the 404
+# body at whatever URL was requested, so a rule on `/404.html` would never match
+# a real miss; the baseline here is what actually covers it.
+#
+# 'unsafe-inline' for styles is required, not sloppiness: Astro's Fonts API
+# emits its @font-face rules as an inline <style>, and the page's own CSS is
+# inlined too (the whole document is a few kB, so a separate request would cost
+# more than it saves). It buys an attacker nothing here — a fully static page
+# with no user input and nothing reflected from the URL has no injection point
+# for an inline style to arrive through.
+#
+# script-src 'self' exists for one file: the hashed /_astro bundle that decodes
+# the obfuscated mailto. Keeping it out of an inline block is the whole reason
+# that script lives in a module rather than in the markup.
+/*
+  Content-Security-Policy: default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), interest-cohort=()
+  X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
+
+# The FXCommands landing site is a separately built static bundle vendored in
+# whole, and it needs a looser policy than the front page for two reasons:
+#
+#   - Its pages carry an inline <script type="module"> and an inline <style>,
+#     so both directives need 'unsafe-inline'. Rebuilding someone else's output
+#     to hoist two blocks out of the markup is not worth the churn.
+#   - /fxcommands/migrate dynamically imports JSZip from cdn.jsdelivr.net to
+#     rewrite Stream Deck profiles in the browser. That host must be in
+#     script-src or the migrator silently fails to load and the page shows its
+#     "check your ad blocker" error. It is the only external resource anything
+#     on this origin fetches; every other off-site URL here is an anchor.
+#
+# The structural directives that actually matter (frame-ancestors, base-uri,
+# object-src, form-action) are still locked down.
+#
+# The `!` line is load-bearing. Without it BOTH policies are emitted, and a
+# browser given two CSP headers enforces each independently — the effective
+# policy is their intersection, so the strict `script-src 'self'` above would
+# still block the inline module and the JSZip import and the migrator would
+# break. Removing the inherited header first is what makes this an override
+# rather than an addition. Verified against `wrangler dev`: one CSP on every
+# path, strict everywhere except here.
+/fxcommands/*
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'none'; img-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'
+
+# Content-hashed by both builds, so a filename changes whenever its bytes do.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+/fxcommands/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# The HTML is the only thing that changes between deploys and it is a few kB.
+# Revalidate every time rather than serve a stale page.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Proof-of-identity file. Short cache so a key rotation propagates promptly.
+/.well-known/keybase.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+/well-known/keybase.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600

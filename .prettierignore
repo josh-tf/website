@@ -1,0 +1,7 @@
+dist
+.astro
+node_modules
+.wrangler
+pnpm-lock.yaml
+public/_headers
+public/fxcommands

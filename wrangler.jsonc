@@ -1,0 +1,20 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "josh-tf-website",
+  "account_id": "c0eca744e90e0cef2e720650afcdf4c5",
+  "compatibility_date": "2026-08-03",
+
+  // No `main`. This is an assets-only Worker: the page is static and never
+  // changes per request, so there is no script to run. Cloudflare serves ./dist
+  // straight from the edge, and public/_headers (copied into dist by Astro)
+  // supplies the security and cache headers.
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+  },
+
+  // Replaces the git-connected `pages-josh-tf` Pages project. The apex route
+  // covers /fxcommands and /.well-known as well, both of which are plain static
+  // files under public/.
+  "routes": [{ "pattern": "josh.tf/*", "zone_name": "josh.tf" }],
+}

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Two sitemaps: Astro generates the first from src/pages, the second ships with
+# the pre-built FXCommands site vendored under public/ and lists its own routes.
+Sitemap: https://josh.tf/sitemap-index.xml
+Sitemap: https://josh.tf/fxcommands/sitemap.xml

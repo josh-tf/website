@@ -1,0 +1,6 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "//": "public/fxcommands is a pre-built static site vendored in whole; its minified bundles are generated output, not sources to type-check.",
+  "exclude": ["dist", "public/fxcommands"]
+}

@@ -1,0 +1,53 @@
+---
+/*
+ * The contact address, never present in the HTML as a readable string.
+ *
+ * This exists because Cloudflare's Scrape Shield email obfuscation — the
+ * zone-level feature that would normally do this — does not apply to responses
+ * served by a Worker. Cloudflare's HTML post-processing runs on origin
+ * responses only, and Workers (including assets-only Workers like this one)
+ * bypass it entirely. Before the move to Workers this page did the same job
+ * with a runtime script that concatenated the address from fragments; this is
+ * that idea done at build time, and it survives having no inline JavaScript.
+ *
+ * The scheme: XOR every byte against a key, hex-encode, and put the key in the
+ * first byte — exactly what Cloudflare's /cdn-cgi/l/email-protection encoding
+ * does. The key is not a secret and is not trying to be; the point is that no
+ * regex over the response body finds an address, and a harvester has to execute
+ * JavaScript to recover one. That stops essentially every bulk scraper, and
+ * stops nothing that is actually determined.
+ *
+ * Degradation without JavaScript: the address stays readable (the @ and the dot
+ * come from CSS generated content, so they are not in the markup either) but
+ * the link is inert, because an <a> with no href is not a link. Cloudflare's
+ * own version degrades exactly the same way.
+ */
+interface Props {
+  /** Anchor text. Omit to render the address itself, split across spans. */
+  label?: string;
+  class?: string;
+}
+
+const { label, class: className = '' } = Astro.props;
+
+const ADDRESS = 'me@josh.tf';
+const KEY = 0x5c;
+
+const encoded = [KEY, ...[...ADDRESS].map((c) => c.charCodeAt(0) ^ KEY)]
+  .map((b) => b.toString(16).padStart(2, '0'))
+  .join('');
+---
+
+{
+  label ? (
+    <a class={className} data-mail={encoded}>
+      {label}
+    </a>
+  ) : (
+    <a class={`mail ${className}`} data-mail={encoded}>
+      <span>me</span>
+      <span>josh</span>
+      <span>tf</span>
+    </a>
+  )
+}

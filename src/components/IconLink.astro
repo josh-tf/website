@@ -1,0 +1,26 @@
+---
+/*
+ * One entry in the link tray. The tooltip text doubles as the accessible name,
+ * so a single `label` prop drives both the CSS `::before` bubble (via data-tip)
+ * and the aria-label — they cannot drift apart the way two separate attributes
+ * on the old hand-written markup could.
+ */
+interface Props {
+  href: string;
+  /** Tooltip text and accessible name. Lowercase; the tooltip is not shouted. */
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a
+  class="links__item"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-tip={label}
+  aria-label={label}
+>
+  <slot />
+</a>
